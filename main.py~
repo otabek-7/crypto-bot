@@ -1,0 +1,62 @@
+import logging
+import asyncio
+import os
+from dotenv import load_dotenv
+
+from aiogram import Bot, Dispatcher, types
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.types import BotCommand
+
+from handlers.start import register_start_handlers
+from handlers.global_stats import register_global_stats_handlers
+from handlers.top_coins import register_top_coins_handlers
+
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+
+# Load environment variables
+load_dotenv()
+BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+
+
+async def set_commands(bot: Bot):
+    """
+    Set bot commands in the menu
+    """
+    commands = [
+        BotCommand(command="/start", description="Start the bot"),
+        BotCommand(command="/help", description="Get help"),
+        BotCommand(command="/global", description="Global crypto stats"),
+        BotCommand(command="/top", description="View top cryptocurrencies"),
+    ]
+    await bot.set_my_commands(commands)
+
+
+async def main():
+    # Initialize bot and dispatcher
+    bot = Bot(token=BOT_TOKEN, parse_mode=types.ParseMode.HTML)
+    storage = MemoryStorage()
+    dp = Dispatcher(bot, storage=storage)
+    
+    # Register all handlers
+    register_start_handlers(dp)
+    register_global_stats_handlers(dp)
+    register_top_coins_handlers(dp)
+    
+    # Set bot commands
+    await set_commands(bot)
+    
+    # Start polling
+    try:
+        logging.info("Bot started!")
+        await dp.start_polling()
+    finally:
+        await bot.session.close()
+
+
+if __name__ == '__main__':
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
+        logging.info("Bot stopped!")

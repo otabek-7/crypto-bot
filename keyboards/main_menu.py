@@ -1,0 +1,71 @@
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMarkup, InlineKeyboardButton
+
+def get_main_menu_keyboard() -> ReplyKeyboardMarkup:
+    """
+    Creates the main menu keyboard with primary cryptocurrency actions.
+    
+    Returns:
+        ReplyKeyboardMarkup: Main menu keyboard for Telegram bot
+    """
+    keyboard = [
+        [
+            KeyboardButton(text="🌐 Global Stats"),
+            KeyboardButton(text="💹 Top Cryptos")
+        ],
+        [
+            KeyboardButton(text="🔍 Search Coin"),
+            KeyboardButton(text="📊 Exchanges")
+        ],
+        [
+            KeyboardButton(text="⭐ Favorites"),
+            KeyboardButton(text="ℹ️ Help")
+        ]
+    ]
+    
+    return ReplyKeyboardMarkup(keyboard=keyboard, resize_keyboard=True)
+
+def get_coin_menu_inline_keyboard() -> InlineKeyboardMarkup:
+
+    keyboard = [
+        [
+            InlineKeyboardButton(text="📈 Price Chart", callback_data="price_chart"),
+            InlineKeyboardButton(text="📊 Markets", callback_data="markets")
+        ],
+        [
+            InlineKeyboardButton(text="🔄 Refresh", callback_data="refresh_data"),
+            InlineKeyboardButton(text="📱 Social Stats", callback_data="social_stats")
+        ],
+        [
+            InlineKeyboardButton(text="⭐ Add to Favorites", callback_data="add_favorite"),
+            InlineKeyboardButton(text="🔙 Back to List", callback_data="back_to_list")
+        ]
+    ]
+    
+    return InlineKeyboardMarkup(inline_keyboard=keyboard)
+
+def get_pagination_keyboard(current_page: int, total_pages: int, action_prefix: str) -> InlineKeyboardMarkup:
+    """
+    Creates pagination keyboard for navigating through lists.
+    
+    Args:
+        current_page: Current page number (starting from 0)
+        total_pages: Total number of pages
+        action_prefix: Prefix for callback data
+        
+    Returns:
+        InlineKeyboardMarkup: Pagination keyboard
+    """
+    buttons = []
+    
+    # Previous page
+    if current_page > 0:
+        buttons.append(InlineKeyboardButton(text="⬅️", callback_data=f"{action_prefix}_page_{current_page-1}"))
+    
+    # Page indicator
+    buttons.append(InlineKeyboardButton(text=f"📄 {current_page+1}/{total_pages}", callback_data="page_info"))
+    
+    # Next page
+    if current_page < total_pages - 1:
+        buttons.append(InlineKeyboardButton(text="➡️", callback_data=f"{action_prefix}_page_{current_page+1}"))
+    
+    return InlineKeyboardMarkup(inline_keyboard=[buttons])
