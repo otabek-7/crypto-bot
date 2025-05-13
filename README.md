@@ -1,9 +1,18 @@
 📊 Crypto Bot (CoinLore API bilan)
-Telegram orqali ishlaydigan kripto bot. CoinLore API’dan foydalanib, global statistika, eng yaxshi kriptolar, coin qidiruv, birjalar va sevimli coinlar haqida ma’lumot beradi.
+Telegram orqali ishlaydigan kripto bot. CoinLore API’dan foydalanib, quyidagi imkoniyatlarni taqdim etadi:
 
+Global statistika
 
-🔗 API Manbasi:
-CoinLore API hujjati
+Eng yaxshi kriptovalyutalar
+
+Coin qidiruvi
+
+Birjalar haqida ma’lumot
+
+Sevimlilar ro‘yxati
+
+🔗 API Manbasi
+📘 CoinLore API hujjati
 
 ⚙️ O‘rnatish
 bash
@@ -12,7 +21,7 @@ Edit
 git clone https://github.com/yourusername/crypto-telegram-bot.git
 cd crypto-telegram-bot
 pip install -r requirements.txt
-.env fayli yarating va quyidagilarni qo‘shing:
+.env fayli yarating va quyidagilarni yozing:
 
 env
 Copy
@@ -54,12 +63,13 @@ https://api.coinlore.net/api/tickers/?start=0&limit=100
 https://api.coinlore.net/api/exchanges/
 → Kripto birjalar ro‘yxati
 
-📌 Foydalanish namunasi:
-Top Cryptos tugmasini bosing → Eng kuchli 10 ta coin haqida yangilanayotgan ma'lumotlar chiqadi.
+📌 Foydalanish namunasi
+Top Cryptos tugmasini bosing → Eng kuchli 10 ta coin haqida yangilanayotgan ma'lumotlar chiqadi
 
-Search Coin tugmasini bosing → Coin nomini kiriting va batafsil ma’lumot oling.
+Search Coin tugmasini bosing → Coin nomini kiriting va batafsil ma’lumot oling
 
-Favorites orqali o'zingiz yoqtirgan coinlarni saqlab qo'yishingiz mumkin.
+Favorites orqali o'zingiz yoqtirgan coinlarni saqlab qo'yishingiz mumkin
 
 🤝 Hissa qo‘shing
-Pull requestlar ochiq! Yangi imkoniyatlar qo‘shing, xatoliklarni tuzating yoki tajriba orttiring!
+Pull requestlar ochiq!
+Yangi imkoniyatlar qo‘shing, xatoliklarni tuzating yoki tajriba orttiring!
