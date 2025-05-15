@@ -49,6 +49,9 @@ async def help_command(message: types.Message, state: FSMContext):
         "/top - Show top cryptocurrencies\n\n"
         "*Data Source:*\n"
         "All cryptocurrency data is provided by CoinLore API"
+        
+        
+        "Bot by https://t.me/khafizov_page"
     )
     
     await message.answer(
